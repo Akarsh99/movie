@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search for any movie</title>
+</head>
+<style>
+h1 {
+  color: white;
+  text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+}
+    body{
+        background: url('bg.jpg');
+    }
+	input[type=text] {
+    width: 300px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+	background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+	outline-color: white;
+	-webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    border: 3px solid #555;
+	outline: none;
+    border-radius: 4px;
+}
+input[type=text]:focus {
+    border: 3px solid #555;
+	outline: none;
+	width: 500px;
+    border-radius: 4px;
+}
+input[type=submit]{
+    background-color: rgb(1, 181, 82);
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+input[type=submit]:hover{
+    background-color: rgb(0, 231, 104);
+    border-radius: 2px;
+    
+}
+	header{
+  width: 100%;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 1);
+  text-align:center;
+  display:inline-block;
+  margin: 0 auto;
+}
+.content{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+</style>
+
+//<?php 
+// PHP program to find an element x in a 
+// sorted array using Exponential search. 
+  
+// Returns position of first  
+// ocurrence of x in array 
+function exponentialSearch($arr, $n, $x) 
+{ 
+      
+    // If x is present at  
+    // first location itself 
+    if ($arr[0] == $x) 
+        return 0; 
+  
+    // Find range for binary search 
+    // by repeated doubling 
+    $i = 1; 
+    while ($i< $n and $arr[$i] <=$x) 
+        $i = $i * 2; 
+  
+    // Call binary search  
+    // for the found range. 
+    return binarySearch($arr, $i / 2,  
+                        min($i, $n), $x); 
+} 
+  
+// A recursive binary search 
+// function. It returns location 
+// of x in given array arr[l..r] is 
+// present, otherwise -1 
+function binarySearch($arr, $l,  
+                      $r, $x) 
+{ 
+    if ($r >= $l) 
+    { 
+        $mid = $l + ($r - $l)/2; 
+  
+        // If the element is 
+        // present at the middle 
+        // itself 
+        if ($arr[$mid] == $x) 
+            return $mid; 
+  
+        // If element is smaller 
+        // than mid, then it 
+        // can only be present  
+        // n left subarray 
+        if ($arr[$mid] > $x) 
+            return binarySearch($arr, $l,  
+                                $mid - 1, $x); 
+  
+        // Else the element  
+        // can only be present 
+        // in right subarray 
+        return binarySearch($arr, $mid + 1, 
+                                    $r, $x); 
+    } 
+  
+    // We reach here when 
+    // element is not present 
+    // in array 
+    return -1; 
+} 
+  
+// Driver code 
+$arr = array(2, 3, 4, 10, 40); 
+$n = count($arr); 
+$x = 10; 
+$result = exponentialSearch($arr, $n, $x); 
+if($result == -1) 
+    //echo "Element is not present in array"; 
+else
+    //echo "Element is present at index ", 
+                                $result; 
+  
+// This code is contributed by anuj_67 
+
+<body bgcolor="black">
+<div class="content">
+	<form action="display.php" method="POST">
+		<center><h1><font color='white' face='sans-serif' size='20'> Enter title of the movie</font></h1><input type="text" name="m_title" placeholder="Search"><br/>
+		<br/>
+		<input type="submit" name="Search" value="Search"></center>
+	</form>
+</div>
+</body>
+</html>
